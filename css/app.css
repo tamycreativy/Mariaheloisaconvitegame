@@ -11,7 +11,10 @@
 html,body{height:100%}
 body{background:#3a1a4c;font-family:var(--font);overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 button{font-family:var(--font)}
-#amb{position:fixed;inset:0;background:#3a1a4c center/cover no-repeat}
+#amb{position:fixed;inset:0;background:#3a1a4c}
+#amb i{position:absolute;left:0;right:0;background-size:100% 100%;background-repeat:no-repeat;display:block}
+#amb .t{top:0;bottom:calc(50% + min(100vw * 16 / 9, 100dvh) / 2)}
+#amb .b{bottom:0;top:calc(50% + min(100vw * 16 / 9, 100dvh) / 2)}
 .stage{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100vw,calc(100dvh*9/16));aspect-ratio:9/16;container-type:inline-size;overflow:hidden;background:#2a1630}
 .screen{position:absolute;inset:0;display:none;overflow:hidden}
 .screen.on{display:block}

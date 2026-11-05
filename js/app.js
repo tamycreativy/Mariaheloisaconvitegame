@@ -8,7 +8,7 @@
   var ORDER = ["match", "factory", "race"];
   /* ========================== */
   var $ = function (id) { return document.getElementById(id); }, stage = $("stage"), cur = null, game = null;
-  function amb(n) { $("amb").style.backgroundImage = "url(assets/amb_" + n + ".webp)"; }
+  function amb(n) { document.querySelector("#amb .t").style.backgroundImage = "url(assets/amb_" + n + "_t.png)"; document.querySelector("#amb .b").style.backgroundImage = "url(assets/amb_" + n + "_b.png)"; }
   function show(name) {
     if (name !== "game") amb(name === "cover" || name === "video" ? "capa" : name === "env" || name === "info" || name === "gifts" ? "info" : "capa");
     document.querySelectorAll(".screen").forEach(function (s) { s.classList.toggle("on", s.id === "s-" + name); });
