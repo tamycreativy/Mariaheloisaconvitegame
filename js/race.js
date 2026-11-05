@@ -1,6 +1,7 @@
 /* Candy Kart Race — deslize para trocar de faixa, desvie dos obstáculos, pegue doces e cruze a linha de chegada. */
 SR.games.race = { start: function (root, ctx) {
   var HORIZON = 574, VX = 470, CAR_Y = 1470, LANE = 320;                    // geometria da pista na arte (941x1672)
+  var ENV_Z = 350, ENV_LIFT = 600, ENV_W = 480;                                // envelope flutuando depois da chegada
   var LENGTH = ctx.length || 21000, BASE = 920, FAR = 5200, K = 1000;       // comprimento, velocidade (u/s), alcance e perspectiva
   var OBST = [ { n: "poca_rosa", w: 330, slow: 0.55, crash: false }, { n: "poca_choco", w: 330, slow: 0.55, crash: false }, { n: "rolo", w: 300, slow: 0.35, crash: true }, { n: "muro", w: 330, slow: 0.3, crash: true } ];
   var CANDY = [ { n: "estrela", w: 110 }, { n: "gominha", w: 100 }, { n: "bala_ovo", w: 120 }, { n: "embrulho", w: 125 }, { n: "cupcake", w: 90 }, { n: "choco", w: 105 } ];
@@ -32,9 +33,11 @@ SR.games.race = { start: function (root, ctx) {
       z += SR.rand(1250, 1650);
     }
     items.push({ t: "f", z: LENGTH });
+    items.push({ t: "e", z: LENGTH + ENV_Z });
     items.forEach(function (it) {
-      var e = SR.el("div", "obj" + (it.t === "f" ? " fin" : ""));
-      if (it.t === "f") e.innerHTML = "<u class=\"pole l\"></u><u class=\"pole r\"></u><i></i><b>CHEGADA</b>"; else { e.innerHTML = '<img src="' + SR.asset(it.def.n) + '" alt="">'; if (it.t === "c") e.classList.add("spin"); }
+      var e = SR.el("div", "obj" + (it.t === "f" ? " fin" : it.t === "e" ? " env" : ""));
+      if (it.t === "e") e.innerHTML = '<img src="assets/envelope_flutuante.webp" alt="">';
+      else if (it.t === "f") e.innerHTML = "<u class=\"pole l\"></u><u class=\"pole r\"></u><i></i><b>CHEGADA</b>"; else { e.innerHTML = '<img src="' + SR.asset(it.def.n) + '" alt="">'; if (it.t === "c") e.classList.add("spin"); }
       e.style.display = "none"; layer.appendChild(e); it.el = e; it.done = false;
     });
     for (var k = 0; k < 0; k++) for (var j = 0; j < 12; j++) { var d = SR.el("div", "obj dash", "<i></i>"); d.style.setProperty("--c", ["#ff3d9a", "#ffd23f", "#14c9cf"][j % 3]); layer.appendChild(d); dashes.push({ el: d, side: k ? 1 : -1, j: j }); }
@@ -51,6 +54,7 @@ SR.games.race = { start: function (root, ctx) {
       var s = scaleOf(d), y = sy(s); e.style.display = "block"; e.style.opacity = SR.clamp((FAR - d) / 700, 0, 1);
       e.style.zIndex = Math.min(14, Math.floor(s * 10));
       if (it.t === "f") { e.style.left = SR.pctX(VX); e.style.top = SR.pctY(y); e.style.width = SR.cq(1000 * s); e.style.height = SR.cq(80 * s); e.style.fontSize = SR.cq(10 * s); e.style.setProperty("--u", SR.cq(10 * s)); return; }
+      if (it.t === "e") { e.style.left = SR.pctX(VX); e.style.top = SR.pctY(y - ENV_LIFT * s); e.style.width = SR.cq(ENV_W * s); e.style.zIndex = 1; return; }
       e.style.left = SR.pctX(sx((it.lane - 1) * LANE, s)); e.style.top = SR.pctY(y); e.style.width = SR.cq(it.def.w * s);
     });
     var gap = 260, base = dist % gap;
@@ -72,7 +76,7 @@ SR.games.race = { start: function (root, ctx) {
     var STOP = LENGTH - 60, left = STOP - dist, sp = BASE * (1 + 0.25 * dist / LENGTH) * speedMul; if (left < 1500) sp *= Math.max(0.12, left / 1500); dist = Math.min(STOP, dist + sp * dt);
     carX += (targetX - carX) * Math.min(1, dt * 12);
     items.forEach(function (it) {
-      if (it.done || it.t === "f") return; var d = it.z - dist;
+      if (it.done || it.t === "f" || it.t === "e") return; var d = it.z - dist;
       if (d < -60 || d > 50) { if (d < -60) { it.done = true; } return; }
       if (Math.abs((it.lane - 1) * LANE - carX) > LANE * 0.5) return;
       it.done = true;

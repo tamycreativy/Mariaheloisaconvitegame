@@ -167,3 +167,6 @@ button{font-family:var(--font)}
 .stage.fill .win{left:calc(4.5cqw + var(--cut,0cqw));right:calc(4.5cqw + var(--cut,0cqw))}
 .stage.fill .go{font-size:6.2cqw;padding:1.4cqw 5cqw 2.2cqw}
 .stage.fill .go.sec{font-size:5cqw}
+
+.obj.env img{filter:drop-shadow(0 0 3cqw #fff9) drop-shadow(0 2cqw 2cqw #4a1d3a66);animation:envfloat 1.6s ease-in-out infinite alternate}
+@keyframes envfloat{from{transform:translateY(0) rotate(-1.5deg)}to{transform:translateY(-3.2cqw) rotate(1.5deg)}}
