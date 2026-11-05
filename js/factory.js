@@ -96,19 +96,19 @@ SR.games.factory = { start: function (root, ctx) {
   function cleanup() { running = false; stopLoop && stopLoop(); timers.forEach(clearTimeout); window.removeEventListener("pointermove", onMove); window.removeEventListener("pointerup", release); window.removeEventListener("pointercancel", release); }
   function win() {
     over = true; cleanup(); SR.sfx.win(); SR.sparks(root, 470, 800, 26);
-    later(function () { SR.card(root, { icon: "🏆", badge: "★ Troféu " + (ctx.index + 1) + " de 3 ★", title: "Fábrica salva!", rays: true,
-      extra: '<div class="stats"><span>🍬 ' + score + " doces</span><span>⏱ " + Math.ceil(left) + "s sobrando</span></div>", text: "Todos os doces foram separados. A festa está quase liberada!", button: "Continuar",
+    later(function () { SR.card(root, { icon: "🔎", badge: "★ Pista " + (ctx.index + 1) + " de 3 ★", title: "Ainda não!", rays: true,
+      extra: '<div class="stats"><span>🍬 ' + score + " doces</span><span>⏱ " + Math.ceil(left) + "s sobrando</span></div>", text: "O envelope também não estava na fábrica… mas uma etiqueta aponta para a <b>pista de corrida</b>! Corra atrás dele!", button: "Seguir a pista",
       onClick: function () { ctx.onWin && ctx.onWin({ game: "factory", score: score }); } }); }, 600);
   }
   function lose() {
     over = true; cleanup(); SR.sfx.lose();
     later(function () { SR.card(root, { icon: "😅", badge: "Quase lá!", title: "O tempo acabou", extra: '<div class="stats"><span>🍬 ' + score + " / " + GOAL + "</span></div>",
-      text: "A fábrica ficou cheia de doces. Tente de novo!", button: "Tentar de novo", onClick: function () { SR.games.factory.start(root, Object.assign({}, ctx, { skipBriefing: true })); } }); }, 400);
+      text: "Os doces se misturaram e o envelope sumiu de vista. Tente de novo!", button: "Tentar de novo", onClick: function () { SR.games.factory.start(root, Object.assign({}, ctx, { skipBriefing: true })); } }); }, 400);
   }
   function begin() { SR.countdown(root, function () { running = true; stopLoop = SR.loop(tick); spawn(); spawnT = 1.1; }); }
   hud();
   if (ctx.skipBriefing) begin();
-  else SR.card(root, { icon: "🏭", badge: "Desafio " + (ctx.index + 1) + " de 3", title: "Sweet Factory",
-    text: "Separe <b>" + GOAL + " doces</b> em " + TIME + " segundos. Cada doce vai na caixa da <b>sua cor</b>!", button: "Vamos!", onClick: begin });
+  else SR.card(root, { icon: "🏭", badge: "Seguindo a pista", title: "Sweet Factory",
+    text: "A pista levou até a fábrica! O envelope pode ter ido parar nas esteiras. Separe <b>" + GOAL + " doces</b> em " + TIME + " segundos, cada um na caixa da <b>sua cor</b>, para procurar.", button: "Vamos!", onClick: begin });
   return { destroy: cleanup, debug: { get cands() { return cands; }, BOXES: BOXES, get score() { return score; }, release: release } };
 } };

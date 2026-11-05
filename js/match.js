@@ -142,8 +142,8 @@ SR.games.match = { start: function (root, ctx) {
   function win() {
     over = true; busy = true; SR.sfx.win(); SR.sparks(root, 470, 800, 26);
     later(function () {
-      SR.card(root, { icon: "🏆", badge: "★ Troféu " + (ctx.index + 1) + " de 3 ★", title: "Doces combinados!", rays: true,
-        extra: '<div class="stats"><span>⭐ ' + score + " pontos</span></div>", text: "Você completou o desafio dos doces. Vamos para o próximo?", button: "Continuar",
+      SR.card(root, { icon: "🔎", badge: "★ Pista " + (ctx.index + 1) + " de 3 ★", title: "Que pena!", rays: true,
+        extra: '<div class="stats"><span>⭐ ' + score + " pontos</span></div>", text: "O envelope não estava entre os doces… mas achamos uma pista: ele foi levado para a <b>fábrica</b>! Vamos atrás?", button: "Seguir a pista",
         onClick: function () { ctx.onWin && ctx.onWin({ game: "match", score: score, moves: moves }); } });
     }, 700);
   }
@@ -151,7 +151,7 @@ SR.games.match = { start: function (root, ctx) {
     over = true; busy = true; SR.sfx.lose();
     later(function () {
       SR.card(root, { icon: "😅", badge: "Quase lá!", title: "Acabaram as jogadas", extra: '<div class="stats"><span>⭐ ' + score + " / " + GOAL + "</span></div>",
-        text: "Faltou pouquinho! Tente de novo, você consegue.", button: "Tentar de novo", onClick: function () { destroy(); SR.games.match.start(root, Object.assign({}, ctx, { skipBriefing: true })); } });
+        text: "Ainda não deu para achar a pista. Tente de novo, você consegue!", button: "Tentar de novo", onClick: function () { destroy(); SR.games.match.start(root, Object.assign({}, ctx, { skipBriefing: true })); } });
     }, 500);
   }
 
@@ -190,7 +190,7 @@ SR.games.match = { start: function (root, ctx) {
   buildBoard(); hud();
   function begin() { busy = false; lastInput = Date.now(); }
   if (ctx.skipBriefing) begin();
-  else SR.card(root, { icon: "🍬", badge: "Desafio " + (ctx.index + 1) + " de 3", title: "Candy Match",
-    text: "Troque doces vizinhos para juntar <b>3 ou mais iguais</b> e fazer <b>" + GOAL + " pontos</b> em " + MOVES + " jogadas.", button: "Vamos!", onClick: begin });
+  else SR.card(root, { icon: "🍬", badge: "Procurando o envelope", title: "Será que está aqui?",
+    text: "O envelope pode estar escondido entre os doces! Junte <b>3 ou mais iguais</b> e faça <b>" + GOAL + " pontos</b> em " + MOVES + " jogadas para revirar tudo e achar uma pista.", button: "Procurar!", onClick: begin });
   return { destroy: destroy, debug: { get grid() { return grid; }, typesOf: typesOf, findMove: findMove, trySwap: trySwap, get score() { return score; }, get moves() { return moves; }, get busy() { return busy; } } };
 } };

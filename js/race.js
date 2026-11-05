@@ -100,14 +100,14 @@ SR.games.race = { start: function (root, ctx) {
   function cleanup() { running = false; stopLoop && stopLoop(); timers.forEach(clearTimeout); stageEl.removeEventListener("pointerdown", down); window.removeEventListener("pointermove", mv); window.removeEventListener("pointerup", up); window.removeEventListener("keydown", key); }
   function win() {
     over = true; running = false; cleanup(); SR.sfx.win(); SR.sparks(root, 470, 900, 28);
-    later(function () { SR.card(root, { icon: "🏆", badge: "★ Troféu " + (ctx.index + 1) + " de 3 ★", title: "Corrida vencida!", rays: true,
-      extra: '<div class="stats"><span>🍬 ' + candies + " doces</span><span>💥 " + hits + " batidas</span></div>", text: "Você cruzou a linha de chegada. Vamos para o próximo desafio?", button: "Continuar",
+    later(function () { SR.card(root, { icon: "✨", badge: "★ Última pista ★", title: "Tem algo ali!", rays: true,
+      extra: '<div class="stats"><span>🍬 ' + candies + " doces</span><span>💥 " + hits + " batidas</span></div>", text: "Tem um brilho bem na linha de chegada… Será que é ele?", button: "Ver o que é",
       onClick: function () { ctx.onWin && ctx.onWin({ game: "race", candies: candies, hits: hits }); } }); }, 800);
   }
   function begin() { setLane(1); carX = 0; draw(); SR.countdown(root, function () { running = true; stopLoop = SR.loop(tick); }); }
   carX = 0; draw();
   if (ctx.skipBriefing) begin();
-  else SR.card(root, { icon: "🏎️", badge: "Desafio " + (ctx.index + 1) + " de 3", title: "Candy Kart Race",
-    text: "Deslize para os lados para trocar de faixa, <b>desvie</b> dos obstáculos e pegue o máximo de <b>doces</b> até a linha de chegada!", button: "Vamos!", onClick: begin });
+  else SR.card(root, { icon: "🏎️", badge: "Última pista", title: "Candy Kart Race",
+    text: "A última pista aponta para a pista de corrida! Deslize para trocar de faixa, <b>desvie</b> dos obstáculos e pegue <b>doces</b> até a linha de chegada para encontrar o envelope.", button: "Vamos!", onClick: begin });
   return { destroy: cleanup, debug: { get dist() { return dist; }, get candies() { return candies; }, get hits() { return hits; }, setLane: setLane, get lane() { return lane; }, set dist(v) { dist = v; } } };
 } };
