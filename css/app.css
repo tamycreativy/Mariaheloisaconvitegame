@@ -11,7 +11,8 @@
 html,body{height:100%}
 body{background:#3a1a4c;font-family:var(--font);overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 button{font-family:var(--font)}
-.blur{position:fixed;inset:-5%;background:url(../assets/bg_capa.webp) center/cover;filter:blur(24px) brightness(.7)}
+.blur{display:none}
+@media (min-width:700px){.blur{display:block;position:fixed;inset:-5%;background:url(../assets/bg_capa.webp) center/cover;filter:blur(24px) brightness(.7)}}
 .stage{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100vw,calc(100dvh*9/16));aspect-ratio:9/16;container-type:inline-size;overflow:hidden;background:#2a1630}
 .screen{position:absolute;inset:0;display:none;overflow:hidden}
 .screen.on{display:block}
@@ -71,7 +72,7 @@ button{font-family:var(--font)}
 @keyframes toast{0%{opacity:0;transform:translate(-50%,2cqw) scale(.6)}20%{opacity:1;transform:translate(-50%,0) scale(1.1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-8cqw) scale(1)}}
 .shake{animation:shk .35s}
 @keyframes shk{20%{transform:translateX(-1.4cqw)}40%{transform:translateX(1.4cqw)}60%{transform:translateX(-1cqw)}80%{transform:translateX(1cqw)}}
-.rays{position:absolute;left:50%;top:50%;width:150cqw;height:150cqw;margin:-75cqw 0 0 -75cqw;border-radius:50%;background:repeating-conic-gradient(#ffffff55 0 10deg,#ffffff00 10deg 22deg);animation:spin 18s linear infinite;-webkit-mask-image:radial-gradient(circle,#000 20%,transparent 68%);mask-image:radial-gradient(circle,#000 20%,transparent 68%);z-index:31}
+.rays{position:absolute;left:50%;top:50%;width:150cqw;height:150cqw;margin:-75cqw 0 0 -75cqw;border-radius:50%;background:repeating-conic-gradient(#ffffff55 0 10deg,#ffffff00 10deg 22deg);-webkit-mask-image:radial-gradient(circle,#000 20%,transparent 68%);mask-image:radial-gradient(circle,#000 20%,transparent 68%);z-index:31}
 @keyframes spin{to{transform:rotate(360deg)}}
 .tro{display:flex;gap:2.4cqw;justify-content:center;margin:2cqw 0 3cqw}
 .tro i{font-style:normal;font-size:9cqw;width:15cqw;height:15cqw;border-radius:4.6cqw;background:var(--c);border:1cqw solid var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 1.2cqw 0 #0003,inset 0 1cqw 0 #fff6}
@@ -79,7 +80,7 @@ button{font-family:var(--font)}
 
 /* ---------- Candy Match ---------- */
 .tile{position:absolute;display:flex;align-items:center;justify-content:center;transition:left .22s ease,top .22s ease,opacity .2s;touch-action:none}
-.tile img{width:var(--tw,88%);height:var(--tw,88%);object-fit:contain;display:block;pointer-events:none;filter:drop-shadow(0 .8cqw .6cqw #4a1d3a55);transition:transform .15s}
+.tile img{width:var(--tw,88%);height:var(--tw,88%);object-fit:contain;display:block;pointer-events:none;transition:transform .15s}
 .tile.sel img{transform:scale(1.14);filter:drop-shadow(0 0 1.6cqw #fff) drop-shadow(0 .8cqw .6cqw #4a1d3a55)}
 .tile.pop img{animation:pop .28s ease-in forwards}
 .tile.hint img{animation:hint .8s ease-in-out infinite}
