@@ -7,10 +7,10 @@
   SR.config.music = "assets/musica.mp3";
   var ORDER = ["match", "factory", "race"];
   /* ========================== */
-  var $ = function (id) { return document.getElementById(id); }, stage = $("stage"), cur = null, game = null;
+  var $ = function (id) { return document.getElementById(id); }, stage = $("stage"), cur = "cover", game = null;
   // tela cheia (vídeos e jogos): se a tela é mais alta que 9:16, o palco enche a altura inteira e alarga um pouco (corta as laterais)
   function layout() {
-    var W = window.innerWidth, H = window.innerHeight, Hc = W * 16 / 9, fill = (cur === "video" || cur === "game" || cur === "env") && H > Hc + 2;
+    var W = window.innerWidth, H = window.innerHeight, Hc = W * 16 / 9, fill = (cur === "cover" || cur === "video" || cur === "game" || cur === "env") && H > Hc + 2;
     stage.classList.toggle("fill", fill);
     if (fill) { var sy = H / Hc, sx = 1 + (sy - 1) * 0.5; stage.style.setProperty("--wa", (W * sx) + "px"); stage.style.setProperty("--ha", H + "px"); stage.style.setProperty("--cut", ((1 - 1 / sx) / 2 * 100) + "cqw"); }
     else stage.style.setProperty("--cut", "0cqw");
@@ -97,7 +97,7 @@
   });
 
   // atalhos para testar: #race #match #factory #env #info #gifts
-  amb("capa");
+  amb("capa"); layout();
   var h = location.hash.replace("#", "");
   if (h) { var i = ORDER.indexOf(h); if (i >= 0) startGame(i); else if (h === "env") envelope(); else if (h === "found") found(); else if (h === "info") info(false); else if (h === "gifts") show("gifts"); }
   window.__sr = { startGame: startGame, get game() { return game; }, info: info, envelope: envelope };

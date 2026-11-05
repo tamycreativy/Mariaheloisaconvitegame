@@ -22,10 +22,10 @@ button{font-family:var(--font)}
 .abs{position:absolute}
 
 /* ---------- capa ---------- */
-.mono{position:absolute;left:8cqw;top:1.5cqw;width:84cqw;height:auto;display:block;filter:drop-shadow(0 1.2cqw 1.6cqw #4a1d3a66);animation:in .8s cubic-bezier(.2,.9,.3,1.2) both}
-.cover-card{position:absolute;left:13cqw;right:13cqw;top:50.5cqw;padding:2.2cqw 2.4cqw 2.4cqw;text-align:center;text-wrap:balance;background:#fff;border:.55cqw solid var(--card-line);border-radius:5.5cqw;box-shadow:0 1cqw 0 #ff5fae33,0 2cqw 3.5cqw -1cqw #4a1d3a66;font-size:3.5cqw;font-weight:600;line-height:1.2;color:var(--ink);animation:in .8s .15s cubic-bezier(.2,.9,.3,1.2) both}
+.mono{position:absolute;left:8cqw;top:.85%;width:84cqw;height:auto;display:block;filter:drop-shadow(0 1.2cqw 1.6cqw #4a1d3a66);animation:in .8s cubic-bezier(.2,.9,.3,1.2) both}
+.cover-card{position:absolute;left:13cqw;right:13cqw;top:28.4%;padding:2.2cqw 2.4cqw 2.4cqw;text-align:center;text-wrap:balance;background:#fff;border:.55cqw solid var(--card-line);border-radius:5.5cqw;box-shadow:0 1cqw 0 #ff5fae33,0 2cqw 3.5cqw -1cqw #4a1d3a66;font-size:3.5cqw;font-weight:600;line-height:1.2;color:var(--ink);animation:in .8s .15s cubic-bezier(.2,.9,.3,1.2) both}
 .cover-card b{font-weight:800;color:var(--pink)}
-.btn-pink{position:absolute;left:12cqw;top:151cqw;width:76cqw;display:flex;align-items:center;justify-content:center;gap:3cqw;padding:2.2cqw 3cqw 2.8cqw;border-radius:999px;cursor:pointer;font-size:5.8cqw;font-weight:800;color:var(--pink-text);white-space:nowrap;background:linear-gradient(180deg,#ffc7e4,#ff8cc4);border:.9cqw solid var(--cream);box-shadow:0 1.3cqw 0 #c4126b55,0 2.4cqw 3.5cqw -1cqw #4a1d3a88,inset 0 .8cqw 0 #fff8;animation:in .8s .3s both,pulse 2.2s 1.2s ease-in-out infinite}
+.btn-pink{position:absolute;left:12cqw;top:84.9%;width:76cqw;display:flex;align-items:center;justify-content:center;gap:3cqw;padding:2.2cqw 3cqw 2.8cqw;border-radius:999px;cursor:pointer;font-size:5.8cqw;font-weight:800;color:var(--pink-text);white-space:nowrap;background:linear-gradient(180deg,#ffc7e4,#ff8cc4);border:.9cqw solid var(--cream);box-shadow:0 1.3cqw 0 #c4126b55,0 2.4cqw 3.5cqw -1cqw #4a1d3a88,inset 0 .8cqw 0 #fff8;animation:in .8s .3s both,pulse 2.2s 1.2s ease-in-out infinite}
 .btn-pink svg{width:5cqw;height:5cqw;fill:var(--pink-text);flex:none}
 .btn-pink:active{transform:translateY(1cqw);animation:none}
 @keyframes in{from{opacity:0;transform:translateY(-3cqw) scale(.96)}to{opacity:1;transform:none}}
@@ -148,7 +148,7 @@ button{font-family:var(--font)}
 .err{font-size:4cqw;color:var(--pink-d);font-weight:800;margin-bottom:2cqw}
 .win .go{max-width:100%}
 
-.skip{position:absolute;left:0;right:0;top:167cqw;text-align:center;background:none;border:0;cursor:pointer;font:700 3.6cqw var(--font);color:#fff;text-decoration:underline;text-underline-offset:.8cqw;text-shadow:0 .3cqw 1cqw #4a1d3a,0 0 1.6cqw #4a1d3a;padding:1cqw}
+.skip{position:absolute;left:0;right:0;top:93.9%;text-align:center;background:none;border:0;cursor:pointer;font:700 3.6cqw var(--font);color:#fff;text-decoration:underline;text-underline-offset:.8cqw;text-shadow:0 .3cqw 1cqw #4a1d3a,0 0 1.6cqw #4a1d3a;padding:1cqw}
 
 /* linha de chegada: faixa colorida no chão, dois postes e faixa "CHEGADA" flutuando no alto */
 .obj.fin{transform:translate(-50%,-100%);display:block}
