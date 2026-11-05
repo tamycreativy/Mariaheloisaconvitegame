@@ -17,8 +17,8 @@ SR.games.race = { start: function (root, ctx) {
   var layer = SR.el("div", "abs"); layer.style.cssText = "inset:0;overflow:hidden"; root.appendChild(layer);
   var flash = SR.el("div", "flash"); root.appendChild(flash);
   var car = SR.el("div"); car.id = "carro"; car.innerHTML = '<img src="' + SR.asset("carro") + '" alt="">'; car.style.width = SR.cq(270); layer.appendChild(car);
-  var pC = SR.pill(root, '🍬 <b id="rC">0</b>', "left:5cqw;top:" + SR.pctY(1570));
-  var pP = SR.pill(root, '🏁 <span class="meter" style="width:34cqw"><i id="rM"></i></span>', "right:5cqw;top:" + SR.pctY(1570));
+  var pC = SR.pill(root, '🍬 <b id="rC">0</b>', "left:calc(5cqw + var(--cut,0cqw));top:" + SR.pctY(1570));
+  var pP = SR.pill(root, '🏁 <span class="meter" style="width:34cqw"><i id="rM"></i></span>', "right:calc(5cqw + var(--cut,0cqw));top:" + SR.pctY(1570));
 
   /* ----- pista: obstáculos e doces ----- */
   (function build() {

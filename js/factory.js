@@ -22,8 +22,8 @@ SR.games.factory = { start: function (root, ctx) {
     root.appendChild(z);
     var n = SR.el("div", "boxn", '<img src="' + SR.asset(b.sp) + '" alt="">'); n.style.left = SR.pctX(b.x); n.style.top = SR.pctY(b.y + 105); root.appendChild(n); b.n = n; b.z = z; return z;
   });
-  var pT = SR.pill(root, '⏱ <b id="fT">' + TIME + "</b>", "left:5cqw;top:" + SR.pctY(1330));
-  var pS = SR.pill(root, '🍬 <b id="fS">0</b>/' + GOAL, "right:5cqw;top:" + SR.pctY(1330));
+  var pT = SR.pill(root, '⏱ <b id="fT">' + TIME + "</b>", "left:calc(5cqw + var(--cut,0cqw));top:" + SR.pctY(1330));
+  var pS = SR.pill(root, '🍬 <b id="fS">0</b>/' + GOAL, "right:calc(5cqw + var(--cut,0cqw));top:" + SR.pctY(1330));
 
   function pathLen(p) { var L = 0; for (var i = 1; i < p.length; i++) L += Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]); return L; }
   BELTS.forEach(function (p) { p.L = pathLen(p); });

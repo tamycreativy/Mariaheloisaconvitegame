@@ -14,8 +14,8 @@ SR.games.match = { start: function (root, ctx) {
   var board = SR.el("div", "abs");
   board.style.cssText = "left:" + SR.pctX(GX0) + ";top:" + SR.pctY(GY0) + ";width:" + SR.pctX(N * CW) + ";height:" + SR.pctY(N * CH) + ";overflow:hidden;touch-action:none";
   root.appendChild(board);
-  var sc = SR.pill(root, '<span>⭐</span><b id="mScore">0</b><span class="meter"><i id="mMeter"></i></span>', "left:5cqw;top:" + SR.pctY(1330));
-  var mv = SR.pill(root, 'Jogadas <b id="mMoves">' + MOVES + "</b>", "right:5cqw;top:" + SR.pctY(1330));
+  var sc = SR.pill(root, '<span>⭐</span><b id="mScore">0</b><span class="meter"><i id="mMeter"></i></span>', "left:calc(5cqw + var(--cut,0cqw));top:" + SR.pctY(1330));
+  var mv = SR.pill(root, 'Jogadas <b id="mMoves">' + MOVES + "</b>", "right:calc(5cqw + var(--cut,0cqw));top:" + SR.pctY(1330));
   sc.querySelector(".meter").style.width = "22cqw";
 
   /* ----- lógica pura (matriz de tipos) ----- */
