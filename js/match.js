@@ -130,11 +130,9 @@ SR.games.match = { start: function (root, ctx) {
     if (score >= GOAL) return win();
     if (moves <= 0) return lose();
     if (!findMove(typesOf())) {
-      SR.toast(root, "Embaralhando!", 470, 1000); var all = [];
-      grid.forEach(function (row) { row.forEach(function (t) { all.push(t); }); });
-      var T; do { var types = SR.shuffle(all.map(function (t) { return t.type; })); T = []; for (var r = 0; r < N; r++) T[r] = types.slice(r * N, r * N + N); } while (runs(T).cells.length || !findMove(T));
-      all.forEach(function (t, i) { t.type = types[i]; t.el.querySelector("img").src = SR.asset(SPR[t.type].n); t.el.style.setProperty("--tw", SPR[t.type].w + "%"); });
-      for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) grid[r][c] = all[r * N + c], all[r * N + c].r = r, all[r * N + c].c = c, put(all[r * N + c]);
+      SR.toast(root, "Embaralhando!", 470, 1000);
+      var T = genTypes();                                                  // novo tabuleiro sem combinações prontas e com jogada possível
+      for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) { var t = grid[r][c]; t.type = T[r][c]; t.el.querySelector("img").src = SR.asset(SPR[t.type].n); t.el.style.setProperty("--tw", SPR[t.type].w + "%"); }
     }
     say.set(score > 0 ? "Muito bem! Faça <em>combos em cadeia</em> para ganhar mais pontos." : say.querySelector("p").innerHTML);
     busy = false; lastInput = Date.now();

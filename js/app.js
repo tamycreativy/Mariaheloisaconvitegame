@@ -8,7 +8,9 @@
   var ORDER = ["match", "factory", "race"];
   /* ========================== */
   var $ = function (id) { return document.getElementById(id); }, stage = $("stage"), cur = null, game = null;
+  function amb(n) { $("amb").style.backgroundImage = "url(assets/amb_" + n + ".webp)"; }
   function show(name) {
+    if (name !== "game") amb(name === "cover" || name === "video" ? "capa" : name === "env" || name === "info" || name === "gifts" ? "info" : "capa");
     document.querySelectorAll(".screen").forEach(function (s) { s.classList.toggle("on", s.id === "s-" + name); });
     SR.musicLevel(name === "video" || name === "game" ? "low" : "normal"); cur = name; 
   }
@@ -25,10 +27,11 @@
     if (game && game.destroy) game.destroy();
     if (i >= ORDER.length) return found();
     show("game"); var root = $("s-game"); root.innerHTML = "";
+    amb({ match: "match", factory: "fabrica", race: "corrida" }[ORDER[i]]);
     game = SR.games[ORDER[i]].start(root, { index: i, onWin: function () { startGame(i + 1); } });
   }
   function found() {
-    show("game"); var root = $("s-game"); root.innerHTML = '<img class="bg" src="assets/bg_capa.webp" alt="">';
+    amb("capa"); show("game"); var root = $("s-game"); root.innerHTML = '<img class="bg" src="assets/bg_capa.webp" alt="">';
     SR.musicLevel("normal"); SR.sfx.win(); SR.card(root, { icon: "💌", badge: "Missão cumprida", title: "Você conseguiu!", rays: true, text: "Achamos o convite! Achamos o envelope da Maria Heloísa.", button: "Abrir envelope", onClick: envelope });
   }
   function envelope() {
@@ -86,6 +89,7 @@
   });
 
   // atalhos para testar: #race #match #factory #env #info #gifts
+  amb("capa");
   var h = location.hash.replace("#", "");
   if (h) { var i = ORDER.indexOf(h); if (i >= 0) startGame(i); else if (h === "env") envelope(); else if (h === "found") found(); else if (h === "info") info(false); else if (h === "gifts") show("gifts"); }
   window.__sr = { startGame: startGame, get game() { return game; }, info: info, envelope: envelope };

@@ -11,8 +11,7 @@
 html,body{height:100%}
 body{background:#3a1a4c;font-family:var(--font);overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 button{font-family:var(--font)}
-.blur{display:none}
-@media (min-width:700px){.blur{display:block;position:fixed;inset:-5%;background:url(../assets/bg_capa.webp) center/cover;filter:blur(24px) brightness(.7)}}
+#amb{position:fixed;inset:0;background:#3a1a4c center/cover no-repeat}
 .stage{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(100vw,calc(100dvh*9/16));aspect-ratio:9/16;container-type:inline-size;overflow:hidden;background:#2a1630}
 .screen{position:absolute;inset:0;display:none;overflow:hidden}
 .screen.on{display:block}
