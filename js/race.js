@@ -1,8 +1,8 @@
 /* Candy Kart Race — deslize para trocar de faixa, desvie dos obstáculos, pegue doces e cruze a linha de chegada. */
 SR.games.race = { start: function (root, ctx) {
   var HORIZON = 574, VX = 470, CAR_Y = 1470, LANE = 320;                    // geometria da pista na arte (941x1672)
-  var ENV_Z = 350, ENV_LIFT = 600, ENV_W = 480;                                // envelope flutuando depois da chegada
-  var LENGTH = ctx.length || 21000, BASE = 920, FAR = 5200, K = 1000;       // comprimento, velocidade (u/s), alcance e perspectiva
+  var ENV_Z = 420, ENV_LIFT = 0, ENV_W = 330;                                // envelope em pé depois da chegada
+  var LENGTH = ctx.length || 21000, BASE = 1350, FAR = 5200, K = 1000;       // comprimento, velocidade (u/s), alcance e perspectiva
   var OBST = [ { n: "poca_rosa", w: 330, slow: 0.55, crash: false }, { n: "poca_choco", w: 330, slow: 0.55, crash: false }, { n: "rolo", w: 300, slow: 0.35, crash: true }, { n: "muro", w: 330, slow: 0.3, crash: true } ];
   var CANDY = [ { n: "estrela", w: 110 }, { n: "gominha", w: 100 }, { n: "bala_ovo", w: 120 }, { n: "embrulho", w: 125 }, { n: "cupcake", w: 90 }, { n: "choco", w: 105 } ];
   var timers = [], stopLoop, running = false, over = false, dist = 0, speedMul = 1, slowT = 0, candies = 0, hits = 0, lane = 1, carX = 0, targetX = 0, items = [], dashes = [];
